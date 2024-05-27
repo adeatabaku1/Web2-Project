@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Information Page</title>
+	<style>
+        html{
+            font-size: 62.5%;
+            overflow-x: hidden;
+        }
+        
+        html::-webkit-scrollbar{
+            width: 1rem;
+        }
+        
+        html::-webkit-scrollbar-track{
+            background-color: white;
+        }
+        
+        html::-webkit-scrollbar-thumb{
+            background-color: rgb(150, 35, 150);
+        }
+        
+        .container {
+            width: 700px;
+            height: 600px;
+            margin: auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #f2f2f2, #fff);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        
+        button {
+            background-color: #8e44ad;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: black;
+            color: #fff;
+        }
+        
+        button:active {
+            background-color: #8e44ad;
+            box-shadow: 0 5px black;
+            transform: translateY(4px);
+        }
+        
+        p{
+            font-size: 1.5rem;
+        }
+        
+        .form {
+            width: 700px;
+            height: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked {
+  /* Stilizimi i checkbox-it të zgjedhur /
+  / Për shembull, vendosni një imazh si sfond */
+  background-image: url(images/tik.png);
+}
+	</style>
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <h3>Cancellation Policy: Customers are informed of the cancellation policy that in the event of 
+                cancellation of a trip, where the same has paid, only 50% of the amount will be refunded.</h3>
+            <div class="checkbox" type="checkbox" id="checkbox1"></div>
+            <h3>Refund Policy: Refunded money will be returned to the same account number that you used 
+                for payment.</h3>
+            <div class="checkbox" id="checkbox2"></div>
+            <h3>Confirmation of Personal Information: Customers must confirm their full personal information 
+                before making payment. Your information will only be used for identification and system 
+                purposes.</h3>
+            <div class="checkbox" id="checkbox3"></div>
+            <h3>Website Security: Website security is a very important factor for customers. If they encounter
+                 any insecurity or misuse of their data, they are free to act based on what is stated in the 
+                 Privacy Policy.</h3>
+            <div class="checkbox" id="checkbox4"></div>
+            <h3>"You cannot make an online payment if you are not <a href="signup.php">'Signed Up'</a> on our website."</h3>
+            <div class="checkbox" id="checkbox5"></div>
+            <button id="submitBtn">Confirm</button>
+        </div>
+    </div>
+    
+    <script>
+
+const element = document.querySelector('#checkbox1');
+element.addEventListener('click', () => {
+  const style = document.createElement('style');
+  style.innerHTML = '#checkbox1 {background-image: url(images/tik.png); width: 20px; height: 20px; background-size: 20px 20px;}';
+  document.head.appendChild(style);
+});
+
+const element2 = document.querySelector('#checkbox2');
+element2.addEventListener('click', () => {
+  const style = document.createElement('style');
+  style.innerHTML = '#checkbox2 {background-image: url(images/tik.png); width: 20px; height: 20px; background-size: 20px 20px;}';
+  document.head.appendChild(style);
+});
+
+const element3 = document.querySelector('#checkbox3');
+element3.addEventListener('click', () => {
+  const style = document.createElement('style');
+  style.innerHTML = '#checkbox3 {background-image: url(images/tik.png); width: 20px; height: 20px; background-size: 20px 20px;}';
+  document.head.appendChild(style);
+});
+
+const element4 = document.querySelector('#checkbox4');
+element4.addEventListener('click', () => {
+  const style = document.createElement('style');
+  style.innerHTML = '#checkbox4 {background-image: url(images/tik.png); width: 20px; height: 20px; background-size: 20px 20px;}';
+  document.head.appendChild(style);
+});
+
+const element5 = document.querySelector('#checkbox5');
+element5.addEventListener('click', () => {
+  const style = document.createElement('style');
+  style.innerHTML = '#checkbox5 {background-image: url(images/tik.png); width: 20px; height: 20px; background-size: 20px 20px;}';
+  document.head.appendChild(style);
+});
+
+
+        const checkbox1 = document.getElementById('checkbox1');
+        const checkbox2 = document.getElementById('checkbox2');
+        const checkbox3 = document.getElementById('checkbox3');
+        const checkbox4 = document.getElementById('checkbox4');
+        const checkbox5 = document.getElementById('checkbox5');
+        const submitBtn = document.getElementById('submitBtn');
+
+    let checked1 = false;
+    let checked2 = false;
+    let checked3 = false;
+    let checked4 = false;
+    let checked5 = false;
+    
+    checkbox1.addEventListener('click', () => {
+    checked1 = !checked1;
+    checkbox1.classList.toggle('checked');
+    });
+    
+    checkbox2.addEventListener('click', () => {
+    checked2 = !checked2;
+    checkbox2.classList.toggle('checked');
+    });
+    
+    checkbox3.addEventListener('click', () => {
+    checked3 = !checked3;
+    checkbox3.classList.toggle('checked');
+    });
+    
+    checkbox4.addEventListener('click', () => {
+    checked4 = !checked4;
+    checkbox4.classList.toggle('checked');
+    });
+
+    checkbox5.addEventListener('click', () => {
+    checked5 = !checked5;
+    checkbox5.classList.toggle('checked');
+    });
+
+    submitBtn.addEventListener('click', () => {
+    if (checked1 && checked2 && checked3 && checked4 && checked5) {
+        const confirmation = confirm("Are you sure you want to proceed with the ticket purchase?");
+        if (confirmation == true) {
+            window.location.href = "pay.php";
+        }
+    } else {
+        alert('Please confirm all the conditions!');
+    }
+});
+
+</script>
+
