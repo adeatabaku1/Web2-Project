@@ -1,4 +1,9 @@
 <!--CDNjs, SWIPER, Google Fonts, CSS clip-path marker-->
+<?php
+session_start();
+
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +14,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel = "stylesheet" href = "style.css">
-    <?php
+    <link rel="stylesheet" href="<?php echo ($theme == 'dark') ? 'dark_style.css' : 'style.css'; ?>">
+    <script>
+        function openModal() {
+             document.getElementById('themeModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+             document.getElementById('themeModal').style.display = 'none';
+        }
+</script>
+   
+<?php
     // Kontrolloni nëse përdoruesi ka bërë tashmë një zgjedhje
     $cookieChoice = isset($_COOKIE['cookieChoice']) ? $_COOKIE['cookieChoice'] : null;
     
@@ -19,11 +35,17 @@
         $cookieChoice = $_POST['cookieConsent'];
         setcookie('cookieChoice', $cookieChoice, time() + 3600, '/');
     }
+
+// Fshirja e cookie-s nëse përdoruesi ka zgjedhur të refuzojë cookies
+if ($cookieChoice === 'decline') {
+    // Vendosim kohën skadimi negative për të fshirë cookie-në
+    setcookie('cookieChoice', '', time() - 3600, '/');
     
+    // Fshijmë edhe vlerën e $cookieChoice për të siguruar që shiriti i pëlqimit të cookie-ve nuk shfaqet më
+    $cookieChoice = null;
+}
    // Kontrolloni nëse përdoruesi ka pranuar cookies
     $cookiesAccepted = ($cookieChoice === 'accept');
-    
-   // Kodi HTML për shiritin e pëlqimit të cookies
     $consentBar = '
     <div id="cookieConsent" style="background-color: #f8f8f8; padding: 10px; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 9999; display: none;">
         <p>This website uses cookies to enhance your experience. By using our website, you consent to the use of cookies.</p>
@@ -117,14 +139,25 @@
     </section>
     <!-- home section ends -->
 
+<!--home button starts-->
+<div class="themebutton">
+    <button onclick="openModal()" style="background-color:#96869f; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Change Theme</button>
+</div>
+<!--home button ends-->
 
 
-
-
-
-
-
-
+<!-- Theme Selection Form Pop-Up -->
+<div id="themeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <form method="post" action="set_theme.php" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="font-size: 20px; margin-bottom: 20px;">Select Theme</h2>
+        <select name="theme" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+            <option value="light">Light Theme</option>
+            <option value="dark">Dark Theme</option>
+        </select>
+        <button type="submit" style="width: 100%; padding: 10px; border: none; border-radius: 4px; background-color: #007BFF; color: white; cursor: pointer;">Apply Theme</button>
+        <button type="button" onclick="closeModal()" style="width: 100%; padding: 10px; border: none; border-radius: 4px; background-color: #f44336; color: white; cursor: pointer; margin-top: 10px;">Close</button>
+    </form>
+</div>
 
 
 
@@ -191,6 +224,11 @@
 <!-- home about section ends -->
 
 <!-- home package section starts -->
+<section class="weather"> 
+<h4> Hello, <?php echo $_SESSION['username']; ?>
+<p>You have logged in <?php echo $_SESSION['login_count']; ?> times.</p></h4>    
+<b>You can also see weather</b><a style=""href="https://worldweather.wmo.int/en/home.html"> <b>here</b></a>
+</section>
 <section class="weather"> <b>You can also see weather</b><a href="weather.html"> <b>here</b></a>
     <style>
         .weather{
