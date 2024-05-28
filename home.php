@@ -223,12 +223,60 @@ if ($cookieChoice === 'decline') {
 
 <!-- home about section ends -->
 
-<!-- home package section starts -->
-<section class="weather"> 
-<h4> Hello, <?php echo $_SESSION['username']; ?>
-<p>You have logged in <?php echo $_SESSION['login_count']; ?> times.</p></h4>    
-<b>You can also see weather</b><a style=""href="https://worldweather.wmo.int/en/home.html"> <b>here</b></a>
-</section>
+<?php
+
+// Include file që përmban informacionin për lidhjen me bazën e të dhënave
+include "book-db.php";
+
+// Funksion për të sanitizuar stringun
+function sanitizeString($str) {
+    return preg_replace("/[^a-zA-Z0-9\s]/", "", $str);
+}
+
+// Funksion për të validuar numrat
+function validateNumber($num) {
+    return preg_match("/^[0-9]+$/", $num);
+}
+
+// Kontrollo nëse përdoruesi është loguar
+if (isset($_SESSION['username_user_reg'])) {
+    $username = $_SESSION['username_user_reg'];
+    
+    // Kërkesa për të marrë informacionin e përdoruesit nga baza e të dhënave
+    $sql = "SELECT * FROM user_reg WHERE username_user_reg = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+        
+        // Sanitizo dhe valido të dhënat e përdoruesit
+        $username = sanitizeString($row['username_user_reg']);
+        $name = sanitizeString($row['name_user_reg']);
+        
+        // Vendos numrin e logimeve (këtu duhet të kesh një mënyrë për të numëruar logimet e përdoruesit)
+        $login_count = isset($_SESSION['login_count']) ? $_SESSION['login_count'] : 1;
+        if (!validateNumber($login_count)) {
+            $login_count = 0;
+        }
+    } else {
+        echo "Përdoruesi nuk u gjet.";
+    }
+} else {
+    header("Location: login.php");
+    exit();
+}
+?>
+
+
+    <section class="weather"> 
+        <h4> Hello, <?php echo $name; ?></h4>
+        <p>You have logged in <?php echo $login_count; ?> times.</p>
+    </section>
+
+
 <section class="weather"> <b>You can also see weather</b><a href="weather.html"> <b>here</b></a>
     <style>
         .weather{
@@ -255,6 +303,7 @@ if ($cookieChoice === 'decline') {
                 <a href="book_form.php" class="btn">book now</a>
             </div>
         </div>
+        
 
         <div class="box">
             <div class="image">
