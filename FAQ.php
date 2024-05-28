@@ -1,5 +1,7 @@
 <?php
 
+require 'header.php';
+
 //gjeneron madhesine e file-it se na vyn qe mu siguru qe krejt file-i osht hap suksesshem
 function fsize($filename) {
     return filesize($filename);
@@ -48,6 +50,85 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Website - FAQ Page</title>
+    <style>
+        body {
+            line-height: 1.6;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+            font-size: 15px;
+    
+        }
+        .containerr {
+            max-width: 800px; 
+            margin: auto; 
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            
+        }
+        .faq-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .question {
+            font-weight: bold;
+            cursor: pointer;
+            color: #666666;
+        }
+        .answer {
+            display: none;
+            margin-top: 10px;
+        }
+        /* form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        } */
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 800px;
+            height: 100px;
+            resize: vertical;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-bottom:80px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+
 
 </head>
 <body>
@@ -95,5 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </script>
 
+
+    <?php include('footer.php'); ?>
 </body>
 </html>
