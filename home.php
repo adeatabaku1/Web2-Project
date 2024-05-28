@@ -303,7 +303,7 @@ if (isset($_SESSION['username_user_reg'])) {
                 <a href="book_form.php" class="btn">book now</a>
             </div>
         </div>
-        
+
 
         <div class="box">
             <div class="image">
@@ -361,7 +361,7 @@ if (isset($_SESSION['username_user_reg'])) {
                 <h3>Quick Links</h3>
             <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
             <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "pageage.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
             <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
             <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
             </div>

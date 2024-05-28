@@ -26,7 +26,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
 	$returnDateArray = explode('-', $returnDate);
     $leaving = $returnDateArray[2].'-'.$returnDateArray[1].'-'.$returnDateArray[0];
 
-	$user_data .= 'names='. $names;
+	$user_data = 'names='. $names;
 	
 	
 	if (empty($names)) {
@@ -37,7 +37,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
 	    exit();
 	}
 
-	$user_data1 .= 'email='. $email;
+	$user_data1 = 'email='. $email;
 
 	if(empty($email)){
         header("Location: book_form.php?error=Email is required&$user_data1;");
@@ -47,7 +47,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
 	    exit();
 	}
 
-	$user_data2 .= 'phone='. $phone;
+	$user_data2 = 'phone='. $phone;
 
 	if(empty($phone)){
         header("Location: book_form.php?error=Phone is required&$user_data2");
@@ -57,7 +57,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
 	    exit();
 	}
 
-	$user_data3 .= 'guests='. $guests;
+	$user_data3 = 'guests='. $guests;
 
 	if(empty($guests)){
         header("Location: book_form.php?error=Guests is required&$user_data3");
@@ -67,7 +67,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
 	    exit();
 	}
 
-	$user_data4 .= 'arrivals='. $arrivals;
+	$user_data4 = 'arrivals='. $arrivals;
 
 	if(empty($arrivals)){
         header("Location: book_form.php?error=Arrivals is required&$user_data4");
@@ -96,3 +96,4 @@ else{
 	header("Location: book_form.php");
 	exit();
 }
+?>
