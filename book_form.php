@@ -66,7 +66,7 @@ function formatDate(date) {
     </section>
     <!-- header section ends -->
 
-<div class = "heading" style = "background:url(images/snow.jpg)">
+<div class = "heading" style = "background:url(images/book.png)">
     <h1 style="color: #fff;">TRAVEL WITH US!</h1>
     <style>
         h1 {

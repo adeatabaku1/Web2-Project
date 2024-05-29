@@ -36,16 +36,16 @@
 </section>
 <!-- header section ends -->
 
-<div class = "heading" style = "background:url(images/package.jpg)  ">
+<div class = "heading" style = "background:url(images/package.jpg)">
     <h1>PACKAGES</h1>
 </div>
 
 <!-- package section starts -->
 
 <section class="packages">
-    <h1 class="heading-title">Top Destinations</h1>
-    <p class="description">If you want to see the current weather for the place you wish to visit, you can click on the "Weather" button.</p>
-    <a href="weather.html" class="btn">Weather</a>
+    <h1 class="heading-title">top destinations</h1>
+    <p style="color: #8e44ad; font-size: 15px; margin-left: 100px;">If you want to see the current weather for the place you wish to visit, you can click on the "Weather" button.</p>
+    <a href="weather.html" class="btn" style="margin-bottom: 20px; margin-left: 460px;">Weather</a>
     <div class="box-container">
         <div class="box">
             <div class="image">
