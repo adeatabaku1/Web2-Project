@@ -1,4 +1,3 @@
-<!--CDNjs, SWIPER, Google Fonts, CSS clip-path marker-->
 <?php
 session_start();
 
@@ -10,10 +9,11 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title> <!--Font awesome cdn link-->
+    <title>HOME</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel = "stylesheet" href = "style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="<?php echo ($theme == 'dark') ? 'dark_style.css' : 'style.css'; ?>">
     <script>
         function openModal() {
@@ -23,84 +23,30 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
         function closeModal() {
              document.getElementById('themeModal').style.display = 'none';
         }
-</script>
-   
-<?php
-    // Kontrolloni nëse përdoruesi ka bërë tashmë një zgjedhje
-    $cookieChoice = isset($_COOKIE['cookieChoice']) ? $_COOKIE['cookieChoice'] : null;
-    
-    // Përpunoni zgjedhjen e përdoruesit
-
-    if (isset($_POST['cookieConsent'])) {
-        $cookieChoice = $_POST['cookieConsent'];
-        setcookie('cookieChoice', $cookieChoice, time() + 3600, '/');
-    }
-
-// Fshirja e cookie-s nëse përdoruesi ka zgjedhur të refuzojë cookies
-if ($cookieChoice === 'decline') {
-    // Vendosim kohën skadimi negative për të fshirë cookie-në
-    setcookie('cookieChoice', '', time() - 3600, '/');
-    
-    // Fshijmë edhe vlerën e $cookieChoice për të siguruar që shiriti i pëlqimit të cookie-ve nuk shfaqet më
-    $cookieChoice = null;
-}
-   // Kontrolloni nëse përdoruesi ka pranuar cookies
-    $cookiesAccepted = ($cookieChoice === 'accept');
-    $consentBar = '
-    <div id="cookieConsent" style="background-color: #f8f8f8; padding: 10px; position: fixed; bottom: 0; width: 100%; text-align: center; z-index: 9999; display: none;">
-        <p>This website uses cookies to enhance your experience. By using our website, you consent to the use of cookies.</p>
-        <form method="POST" style="display: inline-block;">
-            <input type="hidden" name="cookieConsent" value="accept">
-            <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; cursor: pointer;">Accept</button>
-        </form>
-        <form method="POST" style="display: inline-block;">
-            <input type="hidden" name="cookieConsent" value="decline">
-            <button type="submit" style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer;">Decline</button>
-        </form>
-    </div>';
-    
-    // Shfaq shiritin e pëlqimit të cookie-ve nëse përdoruesi nuk ka bërë një zgjedhje ose nëse cookies refuzohen
-    if (!$cookiesAccepted) {
-        echo $consentBar;
-    }
-    ?>
-    
-    <script>
-    
-// Shfaq shiritin e pëlqimit pas 3 sekondash
-    window.setTimeout(function() {
-        var consentBar = document.getElementById('cookieConsent');
-        consentBar.style.display = 'block';
-    }, 3000);
-    
-    // Nëse përdoruesi refuzon, shiriti i miratimit do të rishfaqet pas 3 sekondash
-    if (<?php echo json_encode(!$cookiesAccepted); ?>) {
-        window.setTimeout(function() {
-            var consentBar = document.getElementById('cookieConsent');
-            consentBar.style.display = 'block';
-        }, 3000);
-    }
     </script>
-    
 </head>
 <body>
     <!-- header section starts -->
     <section class="header">
 
-    <a href = "home.php" class = "logo">TRAVEL</a>
+    <a href="home.php" class="logo">BeautyWonders</a>
 
-    <nav class = "navbar">
-        <a href = "home.php">HOME</a>
-        <a href = "about.php">ABOUT</a>
-        <a href = "pageage.php">PACKAGE</a>
-        <a href = "book_form.php">BOOK</a>
+    <nav class="navbar">
+        <a href="home.php">HOME</a>
+        <a href="about.php">ABOUT</a>
+        <a href="pageage.php">PACKAGE</a>
+        <a href="book_form.php">BOOK</a>
         <a href="contact.php">CONTACT</a>
     </nav>
-    <nav class = "navbar23">
-    <a href = "login.php" >Login</a>
+    <nav class="navbar23">
+    <?php if (!isset($_SESSION['username_user_reg'])): ?>
+        <a href="login.php">Login</a>
+    <?php else: ?>
+        <a href="logout.php">Logout</a>
+    <?php endif; ?>
     </nav>
 
-    <div id = "menu-btn" class = "fas fa-bars"></div>
+    <div id="menu-btn" class="fas fa-bars"></div>
 
     </section>
     <!-- header section ends -->
@@ -139,276 +85,453 @@ if ($cookieChoice === 'decline') {
     </section>
     <!-- home section ends -->
 
-<!--home button starts-->
-<div class="themebutton">
-    <button onclick="openModal()" style="background-color:#96869f; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Change Theme</button>
-</div>
-<!--home button ends-->
+    <div class="themebutton">
+        <button onclick="openModal()" style="background-color:#96869f; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Change Theme</button>
+    </div>
 
-
-<!-- Theme Selection Form Pop-Up -->
-<div id="themeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
-    <form method="post" action="set_theme.php" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <h2 style="font-size: 20px; margin-bottom: 20px;">Select Theme</h2>
-        <select name="theme" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
-            <option value="light">Light Theme</option>
-            <option value="dark">Dark Theme</option>
-        </select>
-        <button type="submit" style="width: 100%; padding: 10px; border: none; border-radius: 4px; background-color: #007BFF; color: white; cursor: pointer;">Apply Theme</button>
-        <button type="button" onclick="closeModal()" style="width: 100%; padding: 10px; border: none; border-radius: 4px; background-color: #f44336; color: white; cursor: pointer; margin-top: 10px;">Close</button>
-    </form>
-</div>
-
-
-
+    <!-- Theme Selection Form Pop-Up -->
+    <div id="themeModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <form method="post" action="set_theme.php" style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h2 style="font-size: 20px; margin-bottom: 20px;">Select Theme</h2>
+            <select name="theme" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="light">Light Theme</option>
+                <option value="dark">Dark Theme</option>
+            </select>
+            <button type="submit" style="width: 100%; padding: 10px; border: none; border-radius: 4px; background-color: #007BFF; color: white; cursor: pointer;">Apply Theme</button>
+            <button type="button" onclick="closeModal()" style="width: 100%; padding: 10px; border: none; border-radius: 4px; background-color: #f44336; color: white; cursor: pointer; margin-top: 10px;">Close</button>
+        </form>
+    </div>
 
     <!-- services section starts -->
-    <section class = "services">
-        <h1 class = "heading-title">Our Services</h1>
+    <section class="services">
+        <h1 class="heading-title">Our Services</h1>
         
-        <div class = "box-container">
-            <div class = "box">
-                <img src = "images/Adventure.jpg" alt = "">
+        <div class="box-container">
+            <div class="box">
+                <img src="images/Adventure.jpg" alt="">
                 <h3>Adventure</h3>
             </div>
 
-            <div class = "box">
-                <img src = "images/TourGuide.jpg" alt = "">
+            <div class="box">
+                <img src="images/TourGuide.jpg" alt="">
                 <h3>Tour Guide</h3>
             </div>
 
-            <div class = "box">
-                <img src = "images/Trekking.jpg" alt = "">
+            <div class="box">
+                <img src="images/Trekking.jpg" alt="">
                 <h3>Trekking</h3>
             </div>
 
-            <div class = "box">
-                <img src = "images/CampFire.jpg" alt = "">
+            <div class="box">
+                <img src="images/CampFire.jpg" alt="">
                 <h3>Camp Fire</h3>
             </div>
 
-            <div class = "box">
-                <img src = "images/OffRoad.png" alt = "">
+            <div class="box">
+                <img src="images/OffRoad.png" alt="">
                 <h3>Off Road</h3>
             </div>
 
-            <div class = "box">
-                <img src = "images/Camping.jpg" alt = "">
+            <div class="box">
+                <img src="images/Camping.jpg" alt="">
                 <h3>Camping</h3>
             </div>
-
         </div>
-</section>
+    </section>
     <!-- services section ends -->
 
-<!-- home about section starts -->
+    <!-- home about section starts -->
+    <section class="home-about">
+        <div class="image">
+            <img src="images/aboutas.jpg" alt="">
+        </div>
 
-<section class="home-about">
-    <div class="image">
-        <img src="images/aboutas.jpg" alt="">
+        <div class="content">
+            <h3>about us</h3>
+            <p>"Experience your adventure with just one click! Buying tickets online has never been easier and 
+                faster. Get ready for your upcoming journey by visiting our website and booking your travel
+                 tickets in a fast and secure way. Our online tickets offer the opportunity to choose your desired
+                  destination and date, giving you the complete satisfaction of organizing your trip according to
+                   your preferences. Take advantage of special offers and competitive prices, and get ready to 
+                   live an unforgettable adventure. Book your tickets online now and be part of your
+                    dream journey!"</p>
+            <a href="about.php" class="btn">read more</a>
+        </div>
+    </section>
+    <!-- home about section ends -->
+
+    <!-- Additional user info section -->
+    <?php if (isset($_SESSION['username_user_reg'])): ?>
+        <?php
+        // Include file for database connection
+        include "book-db.php";
+
+        // Sanitize string
+        function sanitizeString($str) {
+            return preg_replace("/[^a-zA-Z0-9\s]/", "", $str);
+        }
+
+        // Validate numbers
+        function validateNumber($num) {
+            return preg_match("/^[0-9]+$/", $num);
+        }
+
+        // Fetch user info from database
+        $username = $_SESSION['username_user_reg'];
+        $sql = "SELECT * FROM user_reg WHERE username_user_reg = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+            $name = sanitizeString($row['name_user_reg']);
+            $login_count = isset($_SESSION['login_count']) ? $_SESSION['login_count'] : 1;
+            if (!validateNumber($login_count)) {
+                $login_count = 0;
+            }
+        } else {
+            echo "User not found.";
+        }
+        ?>
+        <section class="weather"> 
+            <h4>Hello, <?php echo $name; ?></h4>
+            <p>You have logged in <?php echo $login_count; ?> times.</p>
+        </section>
+    <?php endif; ?>
+
+    <section class="weather"> 
+        <b>You can also see weather</b><a href="weather.html"> <b>here</b></a>
+        <style>
+            .weather {
+                text-align: center;
+                padding: 20px;
+                font-size: 18px;
+            }
+            .weather a {
+                color: blue;
+                text-decoration: underline;
+            }
+        </style>
+    </section>
+
+    <div class="form-container">
+<div class="form-inner">
+<form action="addOrders-php.php" method="post" class="login" id="orders"><br><br>
+<div class="field">
+    <input type="number" placeholder="Shto id e orders" id="id_orders" name="id_orders"><br><br>
+</div>
+    <div class="field">
+    <input type="number" placeholder="Shto id e booking" id="id_booking" name="id_booking" ><br><br>
     </div>
-
-    <div class="content">
-        <h3>about us</h3>
-        <p>"Experience your adventure with just one click! Buying tickets online has never been easier and 
-            faster. Get ready for your upcoming journey by visiting our website and booking your travel
-             tickets in a fast and secure way. Our online tickets offer the opportunity to choose your desired
-              destination and date, giving you the complete satisfaction of organizing your trip according to
-               your preferences. Take advantage of special offers and competitive prices, and get ready to 
-               live an unforgettable adventure. Book your tickets online now and be part of your
-                dream journey!"</p>
-        <a href="about.php" class="btn">read more</a>
+    <div class="field">
+    <input type="number" placeholder="Shto id e perdoruesit" id="id_user_reg" name="id_user_reg"><br><br>
     </div>
-</section>
+    <div class="field">
+    <input type="number" placeholder="Shto id e countries" id="id_countries" name="id_countries"><br><br>
+    </div>
+    <div class="field">
+    <input type="number" placeholder="Shto id e hotels" id="id_hotels" name="id_hotels"><br><br>
+    </div>
+    <div class="field">
+    <input type="number" placeholder="Shto id e company_fly" id="id_company_fly" name="id_company_fly"><br><br>
+    </div>
+    <div class="field">
+    <input type="text" placeholder="Shto user_name" id="user_name" name="user_name"><br><br>
+    </div>
+    <button type="submit" class="btn">Add</button><br><br>
+</form>
+</div>
+</div>
 
-<!-- home about section ends -->
+    <!-- review section starts -->
+    <section class="reviews">
+        <h1 class="heading-title">clients reviews</h1>
+        <div class="swiper review-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="images/pic-1.png" alt="">
+                        <h3>john deo</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint delectus eos molestiae quaerat earum, 
+                            temporibus laudantium nisi obcaecati similique dignissimos repudiandae quo alias hic tempora quas 
+                            expedita officiis fugiat laborum?</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="images/pic-2.png" alt="">
+                        <h3>john deo</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint delectus eos molestiae quaerat earum, 
+                            temporibus laudantium nisi obcaecati similique dignissimos repudiandae quo alias hic tempora quas 
+                            expedita officiis fugiat laborum?</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="box">
+                        <img src="images/pic-3.png" alt="">
+                        <h3>john deo</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint delectus eos molestiae quaerat earum, 
+                            temporibus laudantium nisi obcaecati similique dignissimos repudiandae quo alias hic tempora quas 
+                            expedita officiis fugiat laborum?</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- review section ends -->
+
+    <!-- swiper js link  -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="script.js"></script>
+
 
 <?php
 
-// Include file që përmban informacionin për lidhjen me bazën e të dhënave
 include "book-db.php";
 
-// Funksion për të sanitizuar stringun
-function sanitizeString($str) {
-    return preg_replace("/[^a-zA-Z0-9\s]/", "", $str);
+$sql = "SELECT * FROM booking";
+$sql2 = "SELECT * FROM orders";
+$sql3 = "SELECT * FROM hotels";
+$sql4 = "SELECT * FROM countries";
+$sql5 = "SELECT * FROM user_reg";
+$sql6 = "SELECT * FROM company_fly";
+
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+
+echo "<table border = 1 id='tabela1' style='display: none;' class='table_responsive'>
+<tr><th>Id_Booking</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Location</th>
+<th>Guests</th>
+<th>Arrivals</th>
+<th>Leaving</th>";
+while($row = mysqli_fetch_assoc($result)) {
+echo "<tr id='rreshti-".$row["id_booking"]."'><td>".$row["id_booking"]."</td>
+<td>".$row["names"]."</td>
+<td>".$row["email"]."</td>
+<td>".$row["phone"]."</td>
+<td>".$row["address"]."</td>
+<td>".$row["location"]."</td>
+<td>".$row["guests"]."</td>
+<td>".$row["arrivals"]."</td>
+<td>".$row["leaving"]."</td>
+<td><button class='fshi-btn' onclick='fshiRresht(".$row["id_booking"].")'>Delete</button></td>";
 }
-
-// Funksion për të validuar numrat
-function validateNumber($num) {
-    return preg_match("/^[0-9]+$/", $num);
-}
-
-// Kontrollo nëse përdoruesi është loguar
-if (isset($_SESSION['username_user_reg'])) {
-    $username = $_SESSION['username_user_reg'];
-    
-    // Kërkesa për të marrë informacionin e përdoruesit nga baza e të dhënave
-    $sql = "SELECT * FROM user_reg WHERE username_user_reg = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
-        
-        // Sanitizo dhe valido të dhënat e përdoruesit
-        $username = sanitizeString($row['username_user_reg']);
-        $name = sanitizeString($row['name_user_reg']);
-        
-        // Vendos numrin e logimeve (këtu duhet të kesh një mënyrë për të numëruar logimet e përdoruesit)
-        $login_count = isset($_SESSION['login_count']) ? $_SESSION['login_count'] : 1;
-        if (!validateNumber($login_count)) {
-            $login_count = 0;
-        }
-    } else {
-        echo "Përdoruesi nuk u gjet.";
-    }
+echo "</table>";
 } else {
-    header("Location: login.php");
-    exit();
+echo "No results found.";
 }
+
+echo "<br>";
+
+$result = mysqli_query($conn, $sql2);
+
+if (mysqli_num_rows($result) > 0) {
+
+echo "<table border = 1 id='tabela2' style='display: none;' class='table_responsive'>
+<tr><th>Id_Ordres</th>
+<th>Id_Booking</th>
+<th>Id_user_reg</th>
+<th>Id_countries</th>
+<th>Id_hotels</th>
+<th>Id_company_fly</th>
+<th>User_name</th>
+<th>Total_Price</th>";
+while($row = mysqli_fetch_assoc($result)) {
+echo "<tr id='rreshti-".$row["id_orders"]."'><td>" . $row["id_orders"] . "</td>
+<td>".$row["id_booking"]."</td>
+<td>".$row["id_user_reg"]."</td>
+<td>".$row["id_countries"]."</td>
+<td>".$row["id_hotels"]."</td>
+<td>".$row["id_company_fly"]."</td>
+<td>".$row["user_name"]."</td>
+<td>".$row["total_price"]."</td>
+<td><button class='fshi-btn' onclick='fshiRresht2(".$row["id_orders"].")'>Delete</button></td>";
+}
+echo "</table>";
+} else {
+echo "No results found.";
+}
+
+echo "<br>";
+
+$result = mysqli_query($conn, $sql3);
+
+if (mysqli_num_rows($result) > 0) {
+
+echo "<table border = 1 id='tabela3' style='display: none;' class='table_responsive'>
+<tr><th>Id_Hotels</th>
+<th>Name_Hotels</th>
+<th>Offer</th>
+<th>Price_Hotel</th>
+<th>Code_City</th>";
+while($row = mysqli_fetch_assoc($result)) {
+echo "<tr id='rreshti-".$row["id_hotels"]."'><td>" . $row["id_hotels"] . "</td>
+<td>".$row["name_hotels"]."</td>
+<td>".$row["offer"]."</td>
+<td>".$row["price_hotel"]."</td>
+<td>".$row["codCity"]."</td>
+<td><button class='fshi-btn' onclick='fshiRresht(".$row["id_hotels"].")'>Delete</button></td>";
+}
+echo "</table>";
+} else {
+echo "No results found.";
+}
+
+echo "<br>";
+
+
+$result = mysqli_query($conn, $sql4);
+
+if (mysqli_num_rows($result) > 0) {
+
+echo "<table border = 1 id='tabela4' style='display: none;' class='table_responsive'>
+<tr><th>Id_Countries</th>
+<th>Name_Countries</th>
+<th>Price_Countries</th>
+<th>Id_Company_Fly</th>
+<th>Id_Hotels</th>";
+while($row = mysqli_fetch_assoc($result)) {
+echo "<tr id='rreshti-".$row["id_countries"]."'><td>" . $row["id_countries"] . "</td>
+<td>".$row["name_countries"]."</td>
+<td>".$row["price_countries"]."</td>
+<td>".$row["id_company_fly"]."</td>
+<td>".$row["id_hotels"]."</td>
+<td><button class='fshi-btn' onclick='fshiRresht(".$row["id_countries"].")'>Delete</button></td>";
+}
+echo "</table>";
+} else {
+echo "No results found.";
+}
+
+echo "<br>";
+
+$result = mysqli_query($conn, $sql5);
+
+if (mysqli_num_rows($result) > 0) {
+
+echo "<table border = 1 id='tabela5' style='display: none;' class='table_responsive'>
+<tr><th>Id_User</th>
+<th>Name_User</th>
+<th>Username</th>
+<th>Password</th>";
+while($row = mysqli_fetch_assoc($result)) {
+echo "<tr id='rreshti-".$row["id_user_reg"]."'><td>" . $row["id_user_reg"] . "</td>
+<td>".$row["name_user_reg"]."</td>
+<td>".$row["username_user_reg"]."</td>
+<td>".$row["password"]."</td>
+<td><button class='fshi-btn' onclick='fshiRresht(".$row["id_user_reg"].")'>Delete</button></td>";
+}
+echo "</table>";
+} else {
+echo "No results found.";
+}
+
+echo "<br>";
+
+$result = mysqli_query($conn, $sql6);
+
+if (mysqli_num_rows($result) > 0) {
+
+echo "<table border = 1 id='tabela6' style='display: none;' class='table_responsive'>
+<tr><th>Id_Company_Fly</th>
+<th>Name_Company_Fly</th>
+<th>Destination</th>
+<th>Contract</th>
+<th>Price_Fly</th>";
+while($row = mysqli_fetch_assoc($result)) {
+echo "<tr id='rreshti-".$row["id_company_fly"]."'><td>" . $row["id_company_fly"] . "</td>
+<td>".$row["name_company_fly"]."</td>
+<td>".$row["destination"]."</td>
+<td>".$row["contract"]."</td>
+<td>".$row["price_fly"]."</td>
+<td><button class='fshi-btn' onclick='fshiRresht(".$row["id_company_fly"].")'>Delete</button></td>";
+}
+echo "</table>";
+} else {
+echo "No results found.";
+}
+
 ?>
 
 
-    <section class="weather"> 
-        <h4> Hello, <?php echo $name; ?></h4>
-        <p>You have logged in <?php echo $login_count; ?> times.</p>
-    </section>
 
+<script>
+function fshiRresht(id_booking) {
+  fetch("fshi_booking.php", {
+    method: "POST",
+    body: new URLSearchParams({ id_booking }),
+  })
+    .then((response) => response.text())
+    .then((text) => {
+      console.log(text);
+      if (text.includes("sukses")) {
+        const rreshti = document.getElementById("rreshti-" + id_booking);
+        rreshti.remove();
+      } else {
+        alert("Ndodhi një gabim gjatë fshirjes së rreshtit.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Ndodhi një gabim gjatë fshirjes së rreshtit.");
+    });
+}
 
-<section class="weather"> <b>You can also see weather</b><a href="weather.html"> <b>here</b></a>
-    <style>
-        .weather{
-            background-color: lightgrey;
-            text-align: center;
-            font-size: 20px;
-        }
-    </style>
-</section>
+function fshiRresht2(id_orders) {
+  fetch("fshi_orders.php", {
+    method: "POST",
+    body: new URLSearchParams({ id_orders }),
+  })
+    .then((response) => response.text())
+    .then((text) => {
+      console.log(text);
+      if (text.includes("sukses")) {
+        const rreshti = document.getElementById("rreshti-" + id_orders);
+        rreshti.remove();
+      } else {
+        alert("Ndodhi një gabim gjatë fshirjes së rreshtit.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Ndodhi një gabim gjatë fshirjes së rreshtit.");
+    });
+}
 
-<section class="home-packages">
-    <h1 class="heading-title">New Packages</h1>
-    <div class="box-container">
-        <div class="box">
-            <div class="image">
-                <img src="images/tokyo-japan.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Tokyo & JAPAN</h3>
-                <p style="text-transform: uppercase;">OFFER: 1280$</p>
-                    <p>Ticket: 1650$</p>
-                    <div class="price" style="font-size: larger;"><b>7 DAYS</b></div>
-                <a href="offert.php" class="btn">See more</a>
-                <a href="book_form.php" class="btn">book now</a>
-            </div>
-        </div>
-
-
-        <div class="box">
-            <div class="image">
-                <img src="images/honolulu-hawaii.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Honolulu & HAWAII</h3>
-                <p style="text-transform: uppercase;">OFFER: 2200$</p>
-                    <p>Ticket: 2950$</p>
-                    <div class="price" style="font-size: larger;"><b>7 DAYS</b></div>
-                <a href="offert.php" class="btn">See more</a>
-                <a href="book_form.php" class="btn">book now</a>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="image">
-                <img src="images/berlin-germany.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Berlin & GERMANY</h3>
-                <p style="text-transform: uppercase;">OFFER: 600$</p>
-                    <p>Ticket: 850$</p>
-                    <div class="price" style="font-size: larger;"><b>7 DAYS</b></div>
-                <a href="offert.php" class="btn">See more</a>
-                <a href="book_form.php" class="btn">book now</a>
-            </div>
-        </div>
-        </div>
-
-    </div>
-
-    <div class="load-more"><a href="pageage.php" class="btn">Load more</a></div>
-</section>
-
-<!-- home package section ends -->
-
-<!-- home offer section starts -->
-
-<section class="home-offer">
-    <div class="content">
-        <h3>upto 50% off</h3>
-        <p>Don't miss out on this opportunity: Buy with 50% off for a limited time only!</p>
-        <a href="book_form.php" class="btn">Book now</a>
-    </div>
-</section>
-
-
-<!-- home offer section ends -->
-
-    <!-- footer section start -->
-    <section class="footer" style = "background:url(images/Footer-Background-Image.png) no-repeat">
-        <div class = "box-container">
-            <div class = "box">
-                <h3>Quick Links</h3>
-            <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
-            <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
-            <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
-            <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
-            </div>
-
-            <div class = "box">
-                <h3>Extra Links</h3>
-            <a href = "contact.php"><i class = "fas fa-angle-right"></i>Ask Questions</a>
-            <a href = "about.php"><i class = "fas fa-angle-right"></i>About Us</a>
-            <a href = "private.php"><i class = "fas fa-angle-right"></i>Privacy Policy</a>
-            <a href = "public.php"><i class = "fas fa-angle-right"></i>Terms and Conditions</a>
-            <a href = "pay.php"><i class = "fas fa-angle-right"></i>Link For Pay</a>
-            </div> 
-
-            <div class = "box">
-                <h3>Contact Info</h3>
-                <a href = "#"><i class = "fas fa-phone"></i>+383 49 889 778</a>
-                <a href = "#"><i class = "fas fa-phone"></i>+383 44 889 778</a>
-                <a href = "contact.php"><i class = "fas fa-envelope"></i>maxtravel@gmail.com</a>
-                <a href = "location.php"><i class = "fas fa-map"></i>Prishtine - Kosove</a>
-            </div> 
-
-            <div class = "box">
-                <h3>Follow Us</h3>
-            <a href = "https://www.facebook.com/maxtraveldream"><i class = "fab fa-facebook-f"></i>FACEBOOK</a>
-            <a href = "#"><i class = "fab fa-twitter"></i>TWITTER</a>
-            <a href = "https://www.instagram.com/maxtraveldream/"><i class = "fab fa-instagram"></i>INSTAGRAM</a>
-            <a href = "#"><i class = "fab fa-linkedin"></i>LINKEDIN</a>
-
-            </div>
-         </div>
-
-         <div class = "credit">Created by <span>max Travel</span> | all rights reserved! |</div>
-    </section>
-
-    <!-- footer section ends -->
-
-
-
-
-
-
-
-
-
-    <!-- swiper js link -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <!-- custom js file link -->
-<script src ="script.js"></script>
+</script>
 </body>
 </html>

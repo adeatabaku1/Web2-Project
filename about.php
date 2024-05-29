@@ -13,7 +13,7 @@
     <!-- header section starts -->
     <section class="header">
 
-    <a href = "home.php" class = "logo">TRAVEL</a>
+    <a href = "home.php" class = "logo">BeautyWonders</a>
 
     <nav class = "navbar">
         <a href = "home.php">HOME</a>
@@ -214,7 +214,7 @@
                 <h3>Quick Links</h3>
             <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
             <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "pageage.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
             <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
             <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
             </div>
@@ -250,18 +250,11 @@
 
     <!-- footer section ends -->
 
-
-
-
-
-
-
-
-
     <!-- swiper js link -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- custom js file link -->
-<script src ="script.js"></script>
+<script src ="script.js"></script> 
+<!-- <script src="validation.js"></script> -->
 
 </body>
 </html>

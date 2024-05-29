@@ -8,18 +8,46 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel = "stylesheet" href = "style.css">
+    
+<style>
+        /* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #f06595, #ff6b6b);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+</style>
 </head>
 <body>
     
     <!-- header section starts -->
     <section class="header">
 
-    <a href = "home.php" class = "logo">TRAVEL</a>
+    <a href = "home.php" class = "logo">BeautyWonders</a>
 
     <nav class = "navbar">
         <a href = "home.php">HOME</a>
         <a href = "pageage.php">PACKAGE</a>
         <a href = "book_form.php">BOOK</a>
+        <a href= "logout.php">LOGOUT</a>
     </nav>
     
 
@@ -32,8 +60,7 @@
     <h1>ADMIN</h1>
 </div>
 <!-- about section starts -->
-<a href="addOrders.php" class="btn">Add orders</a>
-<a href="book_form.php" class="btn">Booking</a>
+<a href="addOrders.php" class="btn">Add Orders</a>
 <!-- about section ends -->
 
 <!-- reviews section starts -->
@@ -353,7 +380,7 @@ Paris Hotel is a wonderful hotel located in the city center. It has beautifully 
                 <h3>Quick Links</h3>
             <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
             <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "pageage.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
             <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
             <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
             </div>

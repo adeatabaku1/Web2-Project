@@ -182,29 +182,39 @@ function formatDate(date) {
         </select>
 
         <!-- <label>Location</label> -->
-        <select  class="io"
-                 name="location" 
-                 id="location"
-                >
-                <option>Agra & INDIA</option>
-                        <option>New York & USA</option>
-                        <option>London & UK</option>
-                        <option>Paris & FRANCE</option>
-                        <option>Cairo & EGYPT</option>
-                        <option>Berlin & GERMANY</option>
-                        <option>Istanbul & TURKEY</option>
-                        <option>Rome & ITALY</option>
-                        <option>Tokyo & JAPAN</option>
-                        <option>Lisbon & PORTUGAL</option>
-                        <option>Barcelona & SPAIN</option>
-                        <option>Honolulu & HAWAII</option>
-                        <option>Venice & ITALY</option>
-                        <option>Singapore & SINGAPORE</option>
-                        <option>Toronto & CANADA</option>
-                        <option>Sydney & AUSTRALIA</option>
-                        <option>Lima & PERU</option>
-                        <option>Beijing & CHINA</option>
-        </select>
+        <?php 
+    $selectedLocation = isset($_GET['location']) ? $_GET['location'] : '';
+ ?>     
+<select class="io" name="location" id="location">
+    <?php
+    $locations = [
+    "Agra & INDIA",
+    "New-York & USA",
+    "London & UK",
+    "Paris & FRANCE",
+    "Cairo & EGYPT",
+    "Berlin & GERMANY",
+    "Istanbul & TURKEY",
+    "Rome & ITALY",
+    "Tokyo & JAPAN",
+    "Lisbon & PORTUGAL",
+    "Barcelona & SPAIN",
+    "Honolulu & HAWAII",
+    "Venice & ITALY",
+    "Singapore & SINGAPORE",
+    "Toronto & CANADA",
+    "Sydney & AUSTRALIA",
+    "Lima & PERU",
+    "Beijing & CHINA"
+    ];
+
+    foreach ($locations as $location) {
+        echo "<option" . ($location === $selectedLocation ? " selected='selected'" : "") . ">$location</option>";
+    }
+    ?>
+    
+
+</select>
 
         <!-- <label>Guests</label> -->
         <?php if (isset($_GET['guests'])) { ?>
@@ -240,16 +250,40 @@ function formatDate(date) {
 
         <p style="font-size: 2rem">Leaving</p>
         <span id="return-date" style="font-size: 2rem"></span>
-        <input type="hidden" name="return-date" id="hidden-return-date" pattern="\d{4}-\d{2}-\d{2}">
-                
-          </span>
-        
-        <button type="submit">BOOK</button>
-        <a href="info.html" class="btn" style="margin-left: 355px; background: purple">Pay</a>
-        <button onclick="window.print()" style="margin-left: 355px;">Print</button>
 
+        
+        <div class="buttons-container" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+        <!-- Packages Button -->
+            <a href="pageage.php" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Back</a>
+
+        <!-- Pay Button -->
+            <a href="info.html" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Pay</a>
+        
+        <!-- Print Button -->
+            <button onclick="window.print()" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; border: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center;">Print</button>
+        </div>
+        <script>
+// This function can be called when the button is clicked
+function goBack() {
+    history.back();
+}
+</script>
+
+</div>
+    <style>
+    .btn:hover, button:hover {
+    background: #6A5ACD; /* Slightly darker purple for hover state */
+    transform: translateY(-3px); /* Slightly raise the button to indicate interactivity */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    }
+
+    .btn:active, button:active {
+        transform: translateY(-1px); /* Push the button down a bit when clicked */
+    }
+</style>
     </form>
 </section> 
+
 
 
 <!--booking section ends-->
@@ -262,7 +296,7 @@ function formatDate(date) {
                 <h3>Quick Links</h3>
             <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
             <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "pageage.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
             <a href = "book.php"><i class = "fas fa-angle-right"></i>BOOK</a>
             <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
             </div>
@@ -297,68 +331,6 @@ function formatDate(date) {
     </section>
 
     <!-- footer section ends -->
-
-
-<!-- // define variables and set to empty values
-// $namesErr = $emailErr = $phoneErr = $addressErr = $locationErr = $guestsErr = $arrivalsErr = $leavingErr = "";
-// $names = $email = $phone = $address = $location = $guests = $arrivals = $leaving = "";
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//   if (empty($_POST["names"])) {
-//     $namesErr = "Name is required";
-//   } else {
-//     $names = test_input($_POST["names"]);
-//     // check if name only contains letters and whitespace
-//     if (!preg_match("/^[a-zA-Z-' ]*$/",$names)) {
-//       $namesErr = "Only letters and white space allowed";
-//     }
-//   }
-  
-//   if (empty($_POST["email"])) {
-//     $emailErr = "Email is required";
-//   } else {
-//     $email = test_input($_POST["email"]);
-//     // check if e-mail address is well-formed
-//     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//       $emailErr = "Invalid email format";
-//     }
-//   }
-    
-//   if (empty($_POST["phone"])) {
-//     $phoneErr = "Please your number";
-//   } else if($phone <= 0){
-//     $phoneErr = "Number is not valid";
-//   }else {
-//     $phone = test_input($_POST["phone"]);
-//   }
-
-//   if (empty($_POST["address"])) {
-//     $addressErr = "Please valid address";
-//   } else {
-//     $address = test_input($_POST["address"]);
-//   }
-
-//   if (empty($_POST["location"])) {
-//     $locationErr = "Is not valid";
-//   } else {
-//     $location = test_input($_POST["location"]);
-//   }
-
-//   if (empty($_POST["guests"])) {
-//     $guestsErr = "Please a number";
-//   } else if($guests <= 0){
-//     $guestsErr = "No negative number";
-//   }else {
-//     $guests = test_input($_POST["guests"]);
-//   }
-// }
-
-// function test_input($data) {
-//   $data = trim($data);
-//   $data = stripslashes($data);
-//   $data = htmlspecialchars($data);
-//   return $data;
-// } -->
 
 
 
