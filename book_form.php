@@ -257,42 +257,6 @@ function formatDate(date) {
         <span id="return-date" style="font-size: 2rem"></span>
 
         <button type="submit">BOOK</button>
-        <div class="buttons-container" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
-        <!-- Packages Button -->
-            <a href="pageage.php" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Back</a>
-
-        <!-- Pay Button -->
-            <a href="info.html" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Pay</a>
-        
-        <!-- Print Button -->
-            <button onclick="window.print()" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; border: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center;">Print</button>
-        </div>
-        <script>
-// This function can be called when the button is clicked
-function goBack() {
-    history.back();
-}
-</script>
-
-</div>
-    <style>
-    .btn:hover, button:hover {
-    background: #6A5ACD; /* Slightly darker purple for hover state */
-    transform: translateY(-3px); /* Slightly raise the button to indicate interactivity */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-    }
-
-    .btn:active, button:active {
-        transform: translateY(-1px); /* Push the button down a bit when clicked */
-    }
-</style>
-    </form>
-</section> 
-
-
-
-<!--booking section ends-->
-
 
     <!-- footer section start -->
     <section class="footer" style = "background:url(images/Footer-Background-Image.png) no-repeat">
