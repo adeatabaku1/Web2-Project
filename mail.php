@@ -9,8 +9,8 @@ require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 
-if (isset($_POST["SEND"])) {
-
+// Function to send email
+function sendEmail($to, $subject, $message, $fromName, $fromEmail) {
     $mail = new PHPMailer(true);
 
     try {
@@ -34,14 +34,14 @@ if (isset($_POST["SEND"])) {
         );
 
         // Recipients
-        $mail->setFrom($_POST["email"], $_POST["name"]);
-        $mail->addAddress('teamtravel902@gmail.com');               // Add a recipient
-        $mail->addReplyTo($_POST["email"], $_POST["name"]);
+        $mail->setFrom($fromEmail, $fromName);
+        $mail->addAddress($to);               // Add a recipient
+        $mail->addReplyTo($fromEmail, $fromName);
 
         // Content
         $mail->isHTML(true);                                        // Set email format to HTML
-        $mail->Subject = $_POST["subject"];
-        $mail->Body    = $_POST["body"];
+        $mail->Subject = $subject;
+        $mail->Body    = $message;
 
         // Send email
         $mail->send();
@@ -53,4 +53,17 @@ if (isset($_POST["SEND"])) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
+
+// Check if form was submitted
+if (isset($_POST["SEND"])) {
+    $to = 'teamtravel902@gmail.com'; // Set your email here
+    $subject = $_POST["subject"];
+    $message = $_POST["body"];
+    $fromName = $_POST["name"];
+    $fromEmail = $_POST["email"];
+
+    // Call the function to send email
+    sendEmail($to, $subject, $message, $fromName, $fromEmail);
+}
+
 ?>
