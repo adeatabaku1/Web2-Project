@@ -256,7 +256,7 @@ function formatDate(date) {
         <p style="font-size: 2rem">Leaving</p>
         <span id="return-date" style="font-size: 2rem"></span>
 
-        
+        <button type="submit">BOOK</button>
         <div class="buttons-container" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
         <!-- Packages Button -->
             <a href="pageage.php" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Back</a>
