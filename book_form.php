@@ -79,8 +79,6 @@ function formatDate(date) {
     </style>
 </div>
 
-<!--booking section starts-->
-
 <section class="booking"> 
 
     <!-- <h1 class="heading-title">book your trip!</h1> -->
@@ -187,39 +185,29 @@ function formatDate(date) {
         </select>
 
         <!-- <label>Location</label> -->
-        <?php 
-    $selectedLocation = isset($_GET['location']) ? $_GET['location'] : '';
- ?>     
-<select class="io" name="location" id="location">
-    <?php
-    $locations = [
-    "Agra & INDIA",
-    "New-York & USA",
-    "London & UK",
-    "Paris & FRANCE",
-    "Cairo & EGYPT",
-    "Berlin & GERMANY",
-    "Istanbul & TURKEY",
-    "Rome & ITALY",
-    "Tokyo & JAPAN",
-    "Lisbon & PORTUGAL",
-    "Barcelona & SPAIN",
-    "Honolulu & HAWAII",
-    "Venice & ITALY",
-    "Singapore & SINGAPORE",
-    "Toronto & CANADA",
-    "Sydney & AUSTRALIA",
-    "Lima & PERU",
-    "Beijing & CHINA"
-    ];
-
-    foreach ($locations as $location) {
-        echo "<option" . ($location === $selectedLocation ? " selected='selected'" : "") . ">$location</option>";
-    }
-    ?>
-    
-
-</select>
+        <select  class="io"
+                 name="location" 
+                 id="location"
+                >
+                <option>Agra & INDIA</option>
+                        <option>New York & USA</option>
+                        <option>London & UK</option>
+                        <option>Paris & FRANCE</option>
+                        <option>Cairo & EGYPT</option>
+                        <option>Berlin & GERMANY</option>
+                        <option>Istanbul & TURKEY</option>
+                        <option>Rome & ITALY</option>
+                        <option>Tokyo & JAPAN</option>
+                        <option>Lisbon & PORTUGAL</option>
+                        <option>Barcelona & SPAIN</option>
+                        <option>Honolulu & HAWAII</option>
+                        <option>Venice & ITALY</option>
+                        <option>Singapore & SINGAPORE</option>
+                        <option>Toronto & CANADA</option>
+                        <option>Sydney & AUSTRALIA</option>
+                        <option>Lima & PERU</option>
+                        <option>Beijing & CHINA</option>
+        </select>
 
         <!-- <label>Guests</label> -->
         <?php if (isset($_GET['guests'])) { ?>
@@ -255,8 +243,52 @@ function formatDate(date) {
 
         <p style="font-size: 2rem">Leaving</p>
         <span id="return-date" style="font-size: 2rem"></span>
-
+        <input type="hidden" name="return-date" id="hidden-return-date" pattern="\d{4}-\d{2}-\d{2}">
+                
+          </span>
+        
         <button type="submit">BOOK</button>
+        <a href="info.html" class="btn" style="margin-left: 355px; background: purple">Pay</a>
+        <button onclick="window.print()" style="margin-left: 355px;">Print</button>
+
+    </form>
+</section> 
+        <div class="buttons-container" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+        <!-- Packages Button -->
+            <a href="pageage.php" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Back</a>
+
+        <!-- Pay Button -->
+            <a href="info.html" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Pay</a>
+        
+        <!-- Print Button -->
+            <button onclick="window.print()" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; border: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center;">Print</button>
+        </div>
+        <script>
+// This function can be called when the button is clicked
+function goBack() {
+    history.back();
+}
+</script>
+
+</div>
+    <style>
+    .btn:hover, button:hover {
+    background: #6A5ACD; /* Slightly darker purple for hover state */
+    transform: translateY(-3px); /* Slightly raise the button to indicate interactivity */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    }
+
+    .btn:active, button:active {
+        transform: translateY(-1px); /* Push the button down a bit when clicked */
+    }
+</style>
+    </form>
+</section> 
+
+
+
+<!--booking section ends-->
+
 
     <!-- footer section start -->
     <section class="footer" style = "background:url(images/Footer-Background-Image.png) no-repeat">
