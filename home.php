@@ -175,6 +175,7 @@ require 'error_handler.php';
     </section>
     <!-- home about section ends -->
 
+    
     <!-- Additional user info section -->
     <?php if (isset($_SESSION['username_user_reg'])): ?>
         <?php
@@ -208,7 +209,19 @@ require 'error_handler.php';
             }
         } else {
             echo "User not found.";
+
         }
+       
+        // Përfshini trajtimin e gabimeve
+          require 'error_handler.php';
+
+    // Disa shembuj të kodit që mund të shkaktojnë gabime
+    // Gabimi: Undefined variable
+    //echo $undefinedVariable;
+
+    // Gabimi: Përdorimi i një funksioni të paekzistuar
+    //nonExistentFunction();
+    
         ?>
         <section class="weather"> 
             <h4>Hello, <?php echo $name; ?></h4>
