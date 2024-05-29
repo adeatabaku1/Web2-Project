@@ -246,24 +246,29 @@ function formatDate(date) {
         <input type="hidden" name="return-date" id="hidden-return-date" pattern="\d{4}-\d{2}-\d{2}">
                 
           </span>
-        
-        <button type="submit">BOOK</button>
-        <a href="info.html" class="btn" style="margin-left: 355px; background: purple">Pay</a>
-        <button onclick="window.print()" style="margin-left: 355px;">Print</button>
+          <button type="submit" class="btn">Book</button>
+        <a href="info.html" class="btn" >Pay</a>
+        <button onclick="window.print()" class="btn print">Print</button>
 
+        </div>
     </form>
 </section> 
-        <div class="buttons-container" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
-        <!-- Packages Button -->
-            <a href="pageage.php" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Back</a>
+<style>
+    .print{
+        margin-left:11px;
+    }
+    .btn:hover, button:hover {
+    background: #6A5ACD; 
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    }
 
-        <!-- Pay Button -->
-            <a href="info.html" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center; display: inline-block;">Pay</a>
+    .btn:active, button:active {
+        transform: translateY(-1px); 
+    }
+</style>
         
-        <!-- Print Button -->
-            <button onclick="window.print()" class="btn" style="padding: 10px 30px; min-width: 120px; background: rgb(150, 35, 150); color: white; border: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; text-align: center;">Print</button>
-        </div>
-        <script>
+<script>
 // This function can be called when the button is clicked
 function goBack() {
     history.back();
