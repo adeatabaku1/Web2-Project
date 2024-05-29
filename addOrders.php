@@ -53,8 +53,59 @@ function fshiRresht2(id_orders) {
     <link rel="stylesheet" href="addOrders.css">
     <link rel="stylesheet" href="table.css">
     <title>Add Orders</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #f06595, #ff6b6b);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+</style>
 </head>
 <body>
+<section class="header">
+
+<a href="home.php" class="logo">BeautyWonders</a>
+
+<nav class="navbar">
+    <a href="home.php">HOME</a>
+    <a href="about.php">ABOUT</a>
+    <a href="pageage.php">PACKAGE</a>
+    <a href="book_form.php">BOOK</a>
+    <a href="contact.php">CONTACT</a>
+    <a href="#" onclick="handleHistoryClick()">HISTORY</a>
+</nav>
+<nav class="navbar23">
+<?php if (!isset($_SESSION['username_user_reg'])): ?>
+    <a href="login.php">Login</a>
+<?php else: ?>
+    <a href="logout.php">Logout</a>
+<?php endif; ?>
+</nav>
+
+<div id="menu-btn" class="fas fa-bars"></div>
+
+</section>
+
 <div class="form-container">
 <div class="form-inner">
 <form action="addOrders-php.php" method="post" class="login" id="orders"><br><br>
@@ -96,6 +147,7 @@ function fshiRresht2(id_orders) {
 >User Table</button>
 <button type="button" onclick="document.getElementById('tabela6').style.display='block'" class="btn"
 >Company_Fly Table</button>
+
 
 <?php
 
@@ -270,5 +322,51 @@ echo "No results found.";
 }
 
 ?>
+
+    <!-- footer section start -->
+    <section class="footer" style = "background:url(images/Footer-Background-Image.png) no-repeat">
+        <div class = "box-container">
+            <div class = "box">
+                <h3>Quick Links</h3>
+            <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
+            <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
+            <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
+            <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
+            </div>
+
+            <div class = "box">
+                <h3>Extra Links</h3>
+            <a href = "contact.php"><i class = "fas fa-angle-right"></i>Ask Questions</a>
+            <a href = "about.php"><i class = "fas fa-angle-right"></i>About Us</a>
+            <a href = "private.php"><i class = "fas fa-angle-right"></i>Privacy Policy</a>
+            <a href = "public.php"><i class = "fas fa-angle-right"></i>Terms and Conditions</a>
+            <a href = "pay.php"><i class = "fas fa-angle-right"></i>Link For Pay</a>
+            </div> 
+
+            <div class = "box">
+                <h3>Contact Info</h3>
+                <a href = "#"><i class = "fas fa-phone"></i>+383 49 889 778</a>
+                <a href = "#"><i class = "fas fa-phone"></i>+383 44 889 778</a>
+                <a href = "contact.php"><i class = "fas fa-envelope"></i>teamTravel@gmail.com</a>
+                <a href = "location.php"><i class = "fas fa-map"></i>Prishtine - Kosove</a>
+            </div> 
+
+            <div class = "box">
+                <h3>Follow Us</h3>
+            <a href = "https://www.facebook.com/maxtraveldream"><i class = "fab fa-facebook-f"></i>FACEBOOK</a>
+            <a href = "#"><i class = "fab fa-twitter"></i>TWITTER</a>
+            <a href = "https://www.instagram.com/maxtraveldream/"><i class = "fab fa-instagram"></i>INSTAGRAM</a>
+            <a href = "#"><i class = "fab fa-linkedin"></i>LINKEDIN</a>
+
+            </div>
+         </div>
+
+         <div class = "credit">Created by <span>BeautyWonders Travel</span> | all rights reserved! |</div>
+    </section>
+
+    <!-- footer section ends -->
+
+
 </body>
 </html>

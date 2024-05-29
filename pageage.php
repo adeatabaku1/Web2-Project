@@ -10,26 +10,31 @@
     <link rel = "stylesheet" href = "style.css">
 </head>
 <body>
-    <!-- header section starts -->
-    <section class="header">
+   <!-- header section starts -->
+   <section class="header">
 
-    <a href = "home.php" class = "logo">TRAVEL</a>
+<a href="home.php" class="logo">BeautyWonders</a>
 
-    <nav class = "navbar">
-        <a href = "home.php">HOME</a>
-        <a href = "about.php">ABOUT</a>
-        <a href = "pageage.php">PACKAGE</a>
-        <a href = "book_form.php">BOOK</a>
-        <a href="contact.php">CONTACT</a>
-    </nav>
-    <nav class = "navbar23">
-    <a href = "login.php" >Login</a>
-    </nav>
+<nav class="navbar">
+    <a href="home.php">HOME</a>
+    <a href="about.php">ABOUT</a>
+    <a href="pageage.php">PACKAGE</a>
+    <a href="book_form.php">BOOK</a>
+    <a href="contact.php">CONTACT</a>
+    <a href="#" onclick="handleHistoryClick()">HISTORY</a>
+</nav>
+<nav class="navbar23">
+<?php if (!isset($_SESSION['username_user_reg'])): ?>
+    <a href="login.php">Login</a>
+<?php else: ?>
+    <a href="logout.php">Logout</a>
+<?php endif; ?>
+</nav>
 
-    <div id = "menu-btn" class = "fas fa-bars"></div>
+<div id="menu-btn" class="fas fa-bars"></div>
 
-    </section>
-    <!-- header section ends -->
+</section>
+<!-- header section ends -->
 
 <div class = "heading" style = "background:url(images/package.jpg)  ">
     <h1>PACKAGES</h1>
@@ -38,9 +43,9 @@
 <!-- package section starts -->
 
 <section class="packages">
-    <h1 class="heading-title">top destinations</h1>
-    <p style="color: #8e44ad; font-size: 15px; margin-left: 100px;">If you want to see the current weather for the place you wish to visit, you can click on the "Weather" button.</p>
-    <a href="weather.html" class="btn" style="margin-bottom: 20px; margin-left: 460px;">Weather</a>
+    <h1 class="heading-title">Top Destinations</h1>
+    <p class="description">If you want to see the current weather for the place you wish to visit, you can click on the "Weather" button.</p>
+    <a href="weather.html" class="btn">Weather</a>
     <div class="box-container">
         <div class="box">
             <div class="image">
@@ -294,14 +299,15 @@
 </section>
 <!-- package section ends -->
 
-<!-- footer section start -->
+
+    <!-- footer section start -->
     <section class="footer" style = "background:url(images/Footer-Background-Image.png) no-repeat">
         <div class = "box-container">
             <div class = "box">
                 <h3>Quick Links</h3>
             <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
             <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "pageage.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
             <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
             <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
             </div>
@@ -312,13 +318,14 @@
             <a href = "about.php"><i class = "fas fa-angle-right"></i>About Us</a>
             <a href = "private.php"><i class = "fas fa-angle-right"></i>Privacy Policy</a>
             <a href = "public.php"><i class = "fas fa-angle-right"></i>Terms and Conditions</a>
+            <a href = "pay.php"><i class = "fas fa-angle-right"></i>Link For Pay</a>
             </div> 
 
             <div class = "box">
                 <h3>Contact Info</h3>
                 <a href = "#"><i class = "fas fa-phone"></i>+383 49 889 778</a>
-                <a href = "#"><i class = "fas fa-phone"></i>+383 49 889 778</a>
-                <a href = "contact.php"><i class = "fas fa-envelope"></i>maxtravel@gmail.com</a>
+                <a href = "#"><i class = "fas fa-phone"></i>+383 44 889 778</a>
+                <a href = "contact.php"><i class = "fas fa-envelope"></i>teamTravel@gmail.com</a>
                 <a href = "location.php"><i class = "fas fa-map"></i>Prishtine - Kosove</a>
             </div> 
 
@@ -332,10 +339,11 @@
             </div>
          </div>
 
-         <div class = "credit">Created by <span>max travel</span> | all rights reserved! |</div>
+         <div class = "credit">Created by <span>BeautyWonders Travel</span> | all rights reserved! |</div>
     </section>
 
     <!-- footer section ends -->
+
 
 
 

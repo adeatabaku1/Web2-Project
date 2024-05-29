@@ -43,20 +43,25 @@ function formatDate(date) {
     <!-- header section starts -->
     <section class="header">
 
-    <a href = "home.php" class = "logo">TRAVEL</a>
+    <a href="home.php" class="logo">BeautyWonders</a>
 
-    <nav class = "navbar">
-        <a href = "home.php">HOME</a>
-        <a href = "about.php">ABOUT</a>
-        <a href = "pageage.php">PACKAGE</a>
-        <a href = "book_form.php">BOOK</a>
+    <nav class="navbar">
+        <a href="home.php">HOME</a>
+        <a href="about.php">ABOUT</a>
+        <a href="pageage.php">PACKAGE</a>
+        <a href="book_form.php">BOOK</a>
         <a href="contact.php">CONTACT</a>
+        <a href="#" onclick="handleHistoryClick()">HISTORY</a>
     </nav>
-    <nav class = "navbar23">
-    <a href = "login.php" >Login</a>
+    <nav class="navbar23">
+    <?php if (!isset($_SESSION['username_user_reg'])): ?>
+        <a href="login.php">Login</a>
+    <?php else: ?>
+        <a href="logout.php">Logout</a>
+    <?php endif; ?>
     </nav>
 
-    <div id = "menu-btn" class = "fas fa-bars"></div>
+    <div id="menu-btn" class="fas fa-bars"></div>
 
     </section>
     <!-- header section ends -->
