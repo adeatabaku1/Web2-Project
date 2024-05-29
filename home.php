@@ -29,8 +29,10 @@ require 'error_handler.php';
 
 
     <?php
+    /*
     // Krijimi i një gabimi për testim
     echo $undefinedVariable; // Kjo do të shkaktojë një gabim për shkak të përdorimit të një variabli të papërcaktuar
+    */
     ?>
 
 
