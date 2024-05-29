@@ -50,7 +50,8 @@ function sendEmail($to, $subject, $message, $fromName, $fromEmail) {
                 document.location.href = 'home.php';
               </script>";
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        // Throw an exception if the email could not be sent
+        throw new Exception("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
     }
 }
 
@@ -62,8 +63,14 @@ if (isset($_POST["SEND"])) {
     $fromName = $_POST["name"];
     $fromEmail = $_POST["email"];
 
-    // Call the function to send email
-    sendEmail($to, $subject, $message, $fromName, $fromEmail);
+    try {
+        // Call the function to send email
+        sendEmail($to, $subject, $message, $fromName, $fromEmail);
+    } catch (Exception $e) {
+        echo "<p>Ndodhi një gabim gjatë dërgimit të email-it: " . $e->getMessage() . "</p>";
+        error_log($e->getMessage(), 3, 'error.log'); // Log the error
+    }
 }
 
 ?>
+

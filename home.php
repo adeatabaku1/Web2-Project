@@ -4,6 +4,16 @@ session_start();
 
 $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
 ?>
+
+
+<?php
+// Përfshini skedarin që përmban funksionin për trajtimin e gabimeve
+require 'error_handler.php';
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +25,16 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel = "stylesheet" href = "style.css">
     <link rel="stylesheet" href="<?php echo ($theme == 'dark') ? 'dark_style.css' : 'style.css'; ?>">
+
+
+
+    <?php
+    // Krijimi i një gabimi për testim
+    echo $undefinedVariable; // Kjo do të shkaktojë një gabim për shkak të përdorimit të një variabli të papërcaktuar
+    ?>
+
+
+
     <script>
         function openModal() {
              document.getElementById('themeModal').style.display = 'flex';
