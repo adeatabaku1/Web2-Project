@@ -3,7 +3,7 @@
 
 $servername = "localhost"; 
 $username = "root";
-$password = ""; 
+$password = "220756100081"; 
 $dbname = "LLOGARITJA_KREDIVE"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
