@@ -87,7 +87,7 @@
           <span class="circle one"></span>
           <span class="circle two"></span>
           <!-- // echo htmlspecialchars($_SERVER["PHP_SELF"])? -->
-          <form action="https://formsubmit.co/fatjeta.gashi3@student.uni-pr.edu" method="post" required>
+          <form action="mail.php" method="post" required>
             <h3 class="title">Contact us</h3>
              <div class="input-container">
               <input type="text" name="name" class="input">
