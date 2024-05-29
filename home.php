@@ -4,14 +4,9 @@ session_start();
 $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
 ?>
 
-
 <?php
-// Përfshini skedarin që përmban funksionin për trajtimin e gabimeve
 require 'error_handler.php';
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,17 +21,6 @@ require 'error_handler.php';
     
     <link rel="stylesheet" href="<?php echo ($theme == 'dark') ? 'dark_style.css' : 'style.css'; ?>">
 
-
-
-    <?php
-    /*
-    // Krijimi i një gabimi për testim
-    echo $undefinedVariable; // Kjo do të shkaktojë një gabim për shkak të përdorimit të një variabli të papërcaktuar
-    */
-    ?>
-
-
-
     <script>
         function openModal() {
              document.getElementById('themeModal').style.display = 'flex';
@@ -44,6 +28,14 @@ require 'error_handler.php';
 
         function closeModal() {
              document.getElementById('themeModal').style.display = 'none';
+        }
+
+        function handleHistoryClick() {
+            <?php if (isset($_SESSION['username_user_reg'])): ?>
+                window.location.href = 'histori.php';
+            <?php else: ?>
+                window.location.href = 'login.php?redirect=histori.php';
+            <?php endif; ?>
         }
     </script>
 </head>
@@ -59,6 +51,7 @@ require 'error_handler.php';
         <a href="pageage.php">PACKAGE</a>
         <a href="book_form.php">BOOK</a>
         <a href="contact.php">CONTACT</a>
+        <a href="#" onclick="handleHistoryClick()">HISTORY</a>
     </nav>
     <nav class="navbar23">
     <?php if (!isset($_SESSION['username_user_reg'])): ?>
@@ -302,7 +295,6 @@ require 'error_handler.php';
     </div>
 </section>
 
-
 <!-- home offer section ends -->
 
     <!-- footer section start -->
@@ -330,7 +322,7 @@ require 'error_handler.php';
                 <h3>Contact Info</h3>
                 <a href = "#"><i class = "fas fa-phone"></i>+383 49 889 778</a>
                 <a href = "#"><i class = "fas fa-phone"></i>+383 44 889 778</a>
-                <a href = "contact.php"><i class = "fas fa-envelope"></i>maxtravel@gmail.com</a>
+                <a href = "contact.php"><i class = "fas fa-envelope"></i>teamTravel@gmail.com</a>
                 <a href = "location.php"><i class = "fas fa-map"></i>Prishtine - Kosove</a>
             </div> 
 
@@ -349,17 +341,9 @@ require 'error_handler.php';
 
     <!-- footer section ends -->
 
-
-
-
-
-
-
-
-
     <!-- swiper js link -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- custom js file link -->
-<script src ="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

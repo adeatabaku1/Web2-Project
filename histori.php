@@ -41,6 +41,7 @@
         <a href="pageage.php">PACKAGE</a>
         <a href="book_form.php">BOOK</a>
         <a href="contact.php">CONTACT</a>
+        <a href="histori.php">HISTORY</a>
     </nav>
     <nav class="navbar23">
     <?php if (!isset($_SESSION['username_user_reg'])): ?>
@@ -59,7 +60,7 @@
     <section class="home">
         <div class="swiper home-slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background:url(images/travels.jpg);">
+                <div class="swiper-slide" style="background:url(images/histori1.jpg);">
                     <div class="content">
                         <span>Welcome</span>
                         <h3>Your history</h3>
@@ -73,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide" style="background:url(images/offertPhoto.jpg) no-repeat;">
+                <div class="swiper-slide" style="background:url(images/histori2.jpg) no-repeat;">
                     <div class="content">
                         <span>welcome</span>
                         <h3>Offert For You</h3>
@@ -184,7 +185,7 @@ Our Sales Team</p>
                 <h3>Quick Links</h3>
             <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
             <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "pageage.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
             <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
             <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
             </div>
@@ -202,7 +203,7 @@ Our Sales Team</p>
                 <h3>Contact Info</h3>
                 <a href = "#"><i class = "fas fa-phone"></i>+383 49 889 778</a>
                 <a href = "#"><i class = "fas fa-phone"></i>+383 44 889 778</a>
-                <a href = "contact.php"><i class = "fas fa-envelope"></i>maxtravel@gmail.com</a>
+                <a href = "contact.php"><i class = "fas fa-envelope"></i>teamTravel731@gmail.com</a>
                 <a href = "location.php"><i class = "fas fa-map"></i>Prishtine - Kosove</a>
             </div> 
 
