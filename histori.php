@@ -44,11 +44,9 @@
         <a href="histori.php">HISTORY</a>
     </nav>
     <nav class="navbar23">
-    <?php if (!isset($_SESSION['username_user_reg'])): ?>
-        <a href="login.php">Login</a>
-    <?php else: ?>
+   
         <a href="logout.php">Logout</a>
-    <?php endif; ?>
+    
     </nav>
 
     <div id="menu-btn" class="fas fa-bars"></div>
