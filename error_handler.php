@@ -1,15 +1,5 @@
 <?php
 // Funksioni për trajtimin e gabimeve
-function error_handler($errno, $errstr, $errfile, $errline) {
-    // Krijimi i një mesazhi të gabimit
-    $errorMessage = "[Error $errno] $errstr in $errfile on line $errline";
-
-    // Ruajtja e mesazhit të gabimit në një skedar log
-    error_log($errorMessage . "\n", 3, "errors.log");
-
-    // Shfaqja e mesazhit të gabimit për përdoruesin
-    echo "<p>Një gabim ka ndodhur. Ju lutemi kontaktoni administratorin.</p>";
-}
 
 // Funksioni për trajtimin e përjashtimeve
 function exception_handler($exception) {

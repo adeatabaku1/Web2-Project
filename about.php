@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel = "stylesheet" href = "style.css">
+    <script>        
+    function handleHistoryClick() {
+            <?php if (isset($_SESSION['username_user_reg'])): ?>
+                window.location.href = 'histori.php';
+            <?php else: ?>
+                window.location.href = 'login.php?redirect=histori.php';
+            <?php endif; ?>
+        }
+    </script>
 </head>
 <body>
     <!-- header section starts -->
@@ -21,6 +30,7 @@
         <a href = "pageage.php">PACKAGE</a>
         <a href = "book_form.php">BOOK</a>
         <a href="contact.php">CONTACT</a>
+        <a href="#" onclick="handleHistoryClick()">HISTORY</a>
     </nav>
     <nav class = "navbar23">
     <a href = "login.php" >Login</a>
