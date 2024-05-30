@@ -4,7 +4,7 @@ $sname= "localhost";
 
 $unmae= "root";
 
-$password = "";
+$password = "220756100081";
 
 $db_name = "travel";
 
