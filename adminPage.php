@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel = "stylesheet" href = "style.css">
+    <script>
+        function handleHistoryClick() {
+            <?php if (isset($_SESSION['username_user_reg'])): ?>
+                window.location.href = 'histori.php';
+            <?php else: ?>
+                window.location.href = 'login.php?redirect=histori.php';
+            <?php endif; ?>
+        }
+    </script>
     
 <style>
         /* Button Styles */
@@ -44,21 +53,24 @@
     <a href="home.php" class="logo">BeautyWonders</a>
 
     <nav class="navbar">
-        <a href="home.php">HOME</a>
-        <a href="about.php">ABOUT</a>
-        <a href="pageage.php">PACKAGE</a>
-        <a href="book_form.php">BOOK</a>
-        <a href="contact.php">CONTACT</a>
-        <a href="#" onclick="handleHistoryClick()">HISTORY</a>
-    </nav>
-    <nav class="navbar23">
-    <?php if (!isset($_SESSION['username_user_reg'])): ?>
-        <a href="login.php">Login</a>
-    <?php else: ?>
-        <a href="logout.php">Logout</a>
-    <?php endif; ?>
-    </nav>
+    <a href="home.php">HOME</a>
+    <a href="about.php">ABOUT</a>
+    <a href="pageage.php">PACKAGE</a>
+    <a href="book_form.php">BOOK</a>
+    <a href="contact.php">CONTACT</a>
+    <a href="#" onclick="handleHistoryClick()">HISTORY</a>
+</nav>
+<?php 
+session_start(); // Ensure the session is started
 
+// Check if the user is logged in and set the appropriate link
+$loginLink = !isset($_SESSION['username_user_reg']) ? 'login.php' : 'logout.php';
+$linkText = !isset($_SESSION['username_user_reg']) ? 'Login' : 'Logout';
+?>
+
+<nav class="navbar23">
+    <a href="<?php echo $loginLink; ?>"><?php echo $linkText; ?></a>
+</nav>
     <div id="menu-btn" class="fas fa-bars"></div>
 
     </section>
@@ -388,7 +400,7 @@ Paris Hotel is a wonderful hotel located in the city center. It has beautifully 
                 <h3>Quick Links</h3>
             <a href = "home.php"><i class = "fas fa-angle-right"></i>HOME</a>
             <a href = "about.php"><i class = "fas fa-angle-right"></i>ABOUT</a>
-            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>PACKAGE</a>
+            <a href = "FAQ.php"><i class = "fas fa-angle-right"></i>FAQ</a>
             <a href = "book_form.php"><i class = "fas fa-angle-right"></i>BOOK</a>
             <a href = "contact.php"><i class = "fas fa-angle-right"></i>CONTACT</a>
             </div>

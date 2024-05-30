@@ -22,7 +22,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
     $arrivals = validate($_POST['arrivals']);
     $returnDate = $_POST['return-date'];
 
-    $returnDateArray = explode('-', $returnDate);
+    $returnDateArray = explode('-', $returnDate);//
     $leaving = $returnDateArray[2].'-'.$returnDateArray[1].'-'.$returnDateArray[0];
 
     $user_data = 'names='. $names;
@@ -97,7 +97,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
         }
     }
 
-    // Example of unsetting a reference
+    
     unset($user_data_refs['names']);
 }
 else {

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="bokk.css">
     <link rel = "stylesheet" href = "style.css">
     <script>
-        function calculateReturnDate() {
+function calculateReturnDate() {
   var startDate = document.getElementById('start-date').value;
   var returnDate = new Date(startDate);
   returnDate.setDate(returnDate.getDate() + 5);
@@ -289,13 +289,13 @@ function goBack() {
 </div>
     <style>
     .btn:hover, button:hover {
-    background: #6A5ACD; /* Slightly darker purple for hover state */
-    transform: translateY(-3px); /* Slightly raise the button to indicate interactivity */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    background: #6A5ACD;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
 
     .btn:active, button:active {
-        transform: translateY(-1px); /* Push the button down a bit when clicked */
+        transform: translateY(-1px); 
     }
 </style>
     </form>

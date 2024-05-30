@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        
+        <?php require 'header.php'; ?>
         <div class="container">
             
             <h1>Navigate Through the Map</h1>
