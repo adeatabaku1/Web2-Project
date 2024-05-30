@@ -7,7 +7,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
     && isset($_POST['arrivals']) && isset($_POST['return-date'])) {
 
     function &validate(&$data) {
-        $data = trim($data);
+        $data = trim($data);// Përcjellë me referencë
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
@@ -24,9 +24,10 @@ if (isset($_POST['names']) && isset($_POST['email'])
 
     $returnDateArray = explode('-', $returnDate);
     $leaving = $returnDateArray[2].'-'.$returnDateArray[1].'-'.$returnDateArray[0];
-
+//Përgatit të dhënat për t'u ridrejtuar në rast gabimi
     $user_data = 'names='. $names;
     
+	//Krijon një array të referencave të të dhënave të përdoruesit për një përdorim të mëvonshëm
     $user_data_refs = [];
     $user_data_refs['names'] = &$names;
     $user_data_refs['email'] = &$email;
@@ -36,6 +37,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
     $user_data_refs['guests'] = &$guests;
     $user_data_refs['arrivals'] = &$arrivals;
     
+	//
     if (empty($names)) {
         header("Location: book_form.php?error=Name is required&$user_data");
         exit();
