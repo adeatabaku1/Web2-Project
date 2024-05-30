@@ -4,6 +4,7 @@
 
 <script>
 function fshiRresht(id_booking) {
+  //fetch për të bërë kërkesa POST.
   fetch("fshi_booking.php", {
     method: "POST",
     body: new URLSearchParams({ id_booking }),
