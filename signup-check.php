@@ -21,6 +21,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])
 	$name = validate($_POST['name']);
 
 	$user_data = 'uname='. $uname. '&name='. $name;
+	//Per perdorim ne errora me poshte
 
 
 	if (empty($uname)) {
@@ -57,6 +58,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])
 
 		// hashing the password
         $pass = md5($pass);
+		//Ky funksion merr një varg dhe kthen një hash 32-karakterësh të bazuar në algoritmin MD5.
 
 	    $sql = "SELECT * FROM user_reg WHERE username_user_reg='$uname' ";
 		$result = mysqli_query($conn, $sql);
