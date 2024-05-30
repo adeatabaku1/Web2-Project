@@ -32,9 +32,18 @@
         <a href="contact.php">CONTACT</a>
         <a href="#" onclick="handleHistoryClick()">HISTORY</a>
     </nav>
-    <nav class = "navbar23">
-    <a href = "login.php" >Login</a>
-    </nav>
+
+    <?php 
+session_start(); // Ensure the session is started
+
+// Check if the user is logged in and set the appropriate link
+$loginLink = !isset($_SESSION['username_user_reg']) ? 'login.php' : 'logout.php';
+$linkText = !isset($_SESSION['username_user_reg']) ? 'Login' : 'Logout';
+?>
+
+<nav class="navbar23">
+    <a href="<?php echo $loginLink; ?>"><?php echo $linkText; ?></a>
+</nav>
 
     <div id = "menu-btn" class = "fas fa-bars"></div>
 

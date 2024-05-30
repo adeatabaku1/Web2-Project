@@ -36,6 +36,13 @@ function formatDate(date) {
 
   return day + '-' + month + '-' + year;
 }
+function handleHistoryClick() {
+            <?php if (isset($_SESSION['username_user_reg'])): ?>
+                window.location.href = 'histori.php';
+            <?php else: ?>
+                window.location.href = 'login.php?redirect=histori.php';
+            <?php endif; ?>
+        }
         </script>
     
 </head>
@@ -53,13 +60,17 @@ function formatDate(date) {
         <a href="contact.php">CONTACT</a>
         <a href="#" onclick="handleHistoryClick()">HISTORY</a>
     </nav>
-    <nav class="navbar23">
-    <?php if (!isset($_SESSION['username_user_reg'])): ?>
-        <a href="login.php">Login</a>
-    <?php else: ?>
-        <a href="logout.php">Logout</a>
-    <?php endif; ?>
-    </nav>
+    <?php 
+session_start(); // Ensure the session is started
+
+// Check if the user is logged in and set the appropriate link
+$loginLink = !isset($_SESSION['username_user_reg']) ? 'login.php' : 'logout.php';
+$linkText = !isset($_SESSION['username_user_reg']) ? 'Login' : 'Logout';
+?>
+
+<nav class="navbar23">
+    <a href="<?php echo $loginLink; ?>"><?php echo $linkText; ?></a>
+</nav>
 
     <div id="menu-btn" class="fas fa-bars"></div>
 

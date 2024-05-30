@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="offert.css">
     <link rel="stylesheet" href="style.css">
     <title>OFFERTS</title>
+    <script>
+        function handleHistoryClick() {
+            <?php if (isset($_SESSION['username_user_reg'])): ?>
+                window.location.href = 'histori.php';
+            <?php else: ?>
+                window.location.href = 'login.php?redirect=histori.php';
+            <?php endif; ?>
+        }
+    </script>
 </head>
 <body style="background-image: url('airplane.jpg') no-repeat; width: 100%; height: 100vh; background-position: center; background-size: cover;">
     
@@ -16,11 +25,21 @@
 
 <a href = "home.php" class = "logo">TRAVEL</a>
 
-<nav class = "navbar">
-    <a href = "home.php">HOME</a>
-    <a href = "about.php">ABOUT</a>
-    <a href = "pageage.php">PACKAGE</a>
-</nav>
+<nav class="navbar">
+        <a href="home.php">HOME</a>
+        <a href="about.php">ABOUT</a>
+        <a href="pageage.php">PACKAGE</a>
+        <a href="book_form.php">BOOK</a>
+        <a href="contact.php">CONTACT</a>
+        <a href="#" onclick="handleHistoryClick()">HISTORY</a>
+    </nav>
+    <nav class="navbar23">
+    <?php if (!isset($_SESSION['username_user_reg'])): ?>
+        <a href="login.php">Login</a>
+    <?php else: ?>
+        <a href="logout.php">Logout</a>
+    <?php endif; ?>
+    </nav>
 
 <style>
 
