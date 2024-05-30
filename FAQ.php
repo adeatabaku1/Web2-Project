@@ -162,18 +162,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script>
-        
+        //Funksion që menaxhon shfaqjen dhe fshehjen e përgjigjeve. Merr si parametër pyetjen e klikuar.
         function toggleAnswer(question) {
+            //Merr përgjigjen që ndodhet menjëherë pas pyetjes së klikuar.
             var answer = question.nextElementSibling;
+            //Kontrollon nëse përgjigja është e fshehur. Nëse po, e shfaq.
             if (answer.style.display === "none") {
                 answer.style.display = "block";
             } else {
                 answer.style.display = "none";
             }
         }
-        
+        //Fsheh të gjitha përgjigjet kur faqja ngarkohet për herë të parë. 
         document.querySelectorAll('.answer').forEach(answer => answer.style.display = 'none');
-
+         
     </script>
 
 
