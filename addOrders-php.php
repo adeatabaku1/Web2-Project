@@ -8,9 +8,9 @@ if (isset($_POST['id_orders']) && isset($_POST['id_booking'])
     && isset($_POST['user_name'])) {
 
 	function validate($data){
-       $data = trim($data);
-	   $data = stripslashes($data);
-	   $data = htmlspecialchars($data);
+       $data = trim($data);//heq hapsirat e panevojshme
+	   $data = stripslashes($data); // Heq shenjat e kthimit prapa (\) nga vargu
+	   $data = htmlspecialchars($data);// Konverton karakteret speciale në entitete HTML për të parandaluar sulmet XSS
 	   return $data;
 	}
 
