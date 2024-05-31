@@ -4,9 +4,7 @@ session_start();
 $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
 ?>
 
-<?php
-require 'error_handler.php';
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -195,6 +193,7 @@ require 'error_handler.php';
         // Fetch user info from database
         $username = $_SESSION['username_user_reg'];
         $sql = "SELECT * FROM user_reg WHERE username_user_reg = ?";
+        //Fillon SQL injection
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();

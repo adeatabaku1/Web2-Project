@@ -22,7 +22,7 @@ if (isset($_POST['id_booking'])) {
         if ($result) {
             echo "Rreshti u fshi me sukses.";
         } else {
-            //Perkthen errorin ne html pe
+            //Perkthen errorin ne html
             echo "Ndodhi një gabim gjatë fshirjes së rreshtit: " . htmlspecialchars(mysqli_error($conn));
         }
 

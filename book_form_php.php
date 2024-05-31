@@ -7,27 +7,33 @@ if (isset($_POST['names']) && isset($_POST['email'])
     && isset($_POST['arrivals']) && isset($_POST['return-date'])) {
 
     function &validate(&$data) {
-        $data = trim($data);// Përcjellë me referencë
+        $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
 
-    $names = validate($_POST['names']);
-    $email = validate($_POST['email']);
-    $phone = validate($_POST['phone']);
-    $address = validate($_POST['address']);
-    $location = validate($_POST['location']);
-    $guests = validate($_POST['guests']);
-    $arrivals = validate($_POST['arrivals']);
-    $returnDate = $_POST['return-date'];
+    // Using global variables
+    function setGlobalVariables() {
+        global $names, $email, $phone, $address, $location, $guests, $arrivals, $returnDate;
+        $names = validate($_POST['names']);
+        $email = validate($_POST['email']);
+        $phone = validate($_POST['phone']);
+        $address = validate($_POST['address']);
+        $location = validate($_POST['location']);
+        $guests = validate($_POST['guests']);
+        $arrivals = validate($_POST['arrivals']);
+        $returnDate = $_POST['return-date'];
+    }
 
-    $returnDateArray = explode('-', $returnDate);//
+    // Set global variables
+    setGlobalVariables();
+
+    $returnDateArray = explode('-', $returnDate);
     $leaving = $returnDateArray[2].'-'.$returnDateArray[1].'-'.$returnDateArray[0];
-//Përgatit të dhënat për t'u ridrejtuar në rast gabimi
+
     $user_data = 'names='. $names;
     
-	//Krijon një array të referencave të të dhënave të përdoruesit për një përdorim të mëvonshëm
     $user_data_refs = [];
     $user_data_refs['names'] = &$names;
     $user_data_refs['email'] = &$email;
@@ -37,7 +43,6 @@ if (isset($_POST['names']) && isset($_POST['email'])
     $user_data_refs['guests'] = &$guests;
     $user_data_refs['arrivals'] = &$arrivals;
     
-	//
     if (empty($names)) {
         header("Location: book_form.php?error=Name is required&$user_data");
         exit();
@@ -99,7 +104,7 @@ if (isset($_POST['names']) && isset($_POST['email'])
         }
     }
 
-    
+    // Example of unsetting a reference
     unset($user_data_refs['names']);
 }
 else {

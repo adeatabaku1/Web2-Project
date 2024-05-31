@@ -174,7 +174,7 @@ if (isset($_POST['sort'])) {
     <a href="#" onclick="handleHistoryClick()">HISTORY</a>
 </nav>
 <?php 
-session_start(); // Ensure the session is started
+
 
 // Check if the user is logged in and set the appropriate link
 $loginLink = !isset($_SESSION['username_user_reg']) ? 'login.php' : 'logout.php';
